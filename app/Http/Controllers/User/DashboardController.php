@@ -22,4 +22,19 @@ class DashboardController extends Controller
         return view('backend.user.all_users', compact('users'));
     }
 
+    public function UserDestroy(Request $request) {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+         $notification = array(
+            'message' => 'Logout Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect('/')->with($notification);
+    }
+
 }

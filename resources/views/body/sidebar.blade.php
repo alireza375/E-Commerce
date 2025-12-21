@@ -61,19 +61,20 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#assigncourse" data-bs-toggle="collapse">
+                    <a href="#product" data-bs-toggle="collapse">
                         <!-- <i class="mdi mdi-cart-outline"></i> -->
                         <i class="fa-sharp fa-solid fa-person-chalkboard"></i>
-                        <span> Assign Course </span>
+                        <span> Product Manage </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="assigncourse">
+                    <div class="collapse" id="product">
                         <ul class="nav-second-level">
                             <li>
-                                {{-- <a href="{{ route('assign.course') }}">Assign Course</a> --}}
+                                <a href="{{ route('all.product') }}">All Product</a>
                             </li>
                             <li>
-                                {{-- <a href="{{ route('show.assign.course') }}">Show Assigned Course</a> --}}
+                                {{-- {{ route('add.product') }} --}}
+                                <a href="{{ route('add.product') }}">Add Product</a>
                             </li>
                         </ul>
                     </div>

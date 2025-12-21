@@ -31,7 +31,7 @@
 
                     <div class="dropdown-divider"></div>
 
-                    <a href="{{ route('admin.logout') }}" class="dropdown-item notify-item">
+                    <a href="{{ route('user.logout') }}" class="dropdown-item notify-item">
                         <i class="fe-log-out"></i>
                         <span>Logout</span>
                     </a>

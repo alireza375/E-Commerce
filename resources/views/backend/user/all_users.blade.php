@@ -48,8 +48,7 @@
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>
-                                        {{-- {{ route('edit.teacher',$item->id) }} --}}
-                                        <a href=""
+                                        <a href="#"
                                             class="btn btn-blue rounded-pill waves-effect waves-light">View</a>
 
                                     </td>

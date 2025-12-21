@@ -29,10 +29,13 @@
 
                     <div class="dropdown-divider"></div>
 
-                    <a href="{{ route('admin.logout') }}" class="dropdown-item notify-item">
-                        <i class="fe-log-out"></i>
-                        <span>Logout</span>
-                    </a>
+                   <form method="POST" action="{{ route('admin.logout') }}">
+    @csrf
+    <button type="submit" class="dropdown-item">
+        Logout
+    </button>
+</form>
+
 
                 </div>
             </li>

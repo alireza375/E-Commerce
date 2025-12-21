@@ -34,9 +34,7 @@ class DashboardController extends Controller
         );
 
 
-        // return redirect()->route('/')->with($notification);
         return redirect('/')->with($notification);
 
     }
-
 }
