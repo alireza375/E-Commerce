@@ -46,7 +46,7 @@
                                             <div class="quote_btn-container">
                                                 @if (Auth::check())
                                                     @if (Auth::user()->role === 'admin')
-                                                        <a href="{{ route('admin.dashboard') }}">
+                                                        <a href="{{ route('admin.admin_dashboard') }}">
                                                             <i class="fa fa-user" aria-hidden="true"></i>
                                                             <span>
                                                                 Dashboard

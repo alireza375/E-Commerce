@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\User\DashboardController as UserDashboard;
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('frontend.main_master');
 });
 
@@ -21,12 +22,31 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['auth'])->group(function () {
-
+    Route::get('/', [AdminDashboard::class, 'AdminDestroy'])->name('admin.logout');
     Route::middleware('role:admin')->group(function () {
         Route::get('/admin/dashboard', [AdminDashboard::class, 'index'])
-            ->name('admin.dashboard');
+            ->name('admin.admin_dashboard');
+        Route::get('/admin/profile', [AdminDashboard::class, 'AdminProfile'])->name('admin.profile');
     });
 
+     Route::controller(UserDashboard::class)->group(function(){
+        Route::get('/all/user','AllUser')->name('all.user');
+
+  });
+
+
+
+      Route::controller(CategoryController::class)->group(function(){
+        Route::get('/all/category','AllCategory')->name('all.category');
+        Route::get('/add/category','AddCategory')->name('add.category');
+        Route::post('/store/category','StoreCategory')->name('store.category');
+        Route::get('/edit/category/{id}','EditCategory')->name('edit.category');
+        Route::post('/update/category/{id}','UpdateCategory')->name('category.update');
+        Route::get('/delete/category/{id}','DeleteCategory')->name('category.delete');
+  });
+
+
+    // Route::get('/', [UserDashboard::class, 'UserDestroy'])->name('user.logout');
     Route::middleware('role:user')->group(function () {
         Route::get('/user/dashboard', [UserDashboard::class, 'index'])
             ->name('user.dashboard');
