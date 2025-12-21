@@ -43,7 +43,7 @@
         <div class="logo-box">
             <div class="text-center logo logo-light">
                 <span class="logo-lg">
-                    <img src="https://nubtkhulna.ac.bd/assets/images/logo.png" alt="" height="35">
+                    <img src="{{ asset('frontend/assets/img/logo.jpg') }}" alt="" height="70">
                 </span>
             </div>
         </div>

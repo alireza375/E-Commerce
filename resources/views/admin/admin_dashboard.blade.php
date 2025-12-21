@@ -10,7 +10,7 @@
     <meta content="Coderthemes" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="https://nubtkhulna.ac.bd/assets/images/icon.png">
+    <link rel="shortcut icon" href="{{ asset('frontend/assets/img/logo.jpg') }}">
 
     <!-- Plugins css -->
     <link href="{{ asset('backend/assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet" type="text/css" />

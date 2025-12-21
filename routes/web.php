@@ -5,15 +5,16 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\DashboardController as UserDashboard;
 
-Route::get('/', function () {
-    return view('frontend.main_master');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/', [HomeController::class, 'HomeMain'])->name('home.main');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -61,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-    Route::get('/', [UserDashboard::class, 'UserDestroy'])->name('user.logout');
+    Route::get('/user/logout', [UserDashboard::class, 'UserDestroy'])->name('user.logout');
     Route::middleware('role:user')->group(function () {
 
         Route::get('/user/dashboard', [UserDashboard::class, 'index'])
