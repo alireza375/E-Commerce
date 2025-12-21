@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,6 +14,8 @@ class HomeController extends Controller
     //     return view('frontend.main_master');
     // }
      public function HomeMain(){
-        return view('frontend.main_master');
+        $categories = Category::latest()->get();
+        $products = Product::latest()->where('status', 1)->get();
+        return view('frontend.main_master', compact('categories', 'products'));
     }
 }

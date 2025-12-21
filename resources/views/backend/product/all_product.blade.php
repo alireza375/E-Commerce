@@ -48,14 +48,12 @@
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td> <img src="{{ asset($item->image) }}" style="width:50px; height: 40px;"> </td>
-                                    {{-- <td>{{ $item->name }}</td> --}}
                                     <td>{{ \Illuminate\Support\Str::limit($item->name, 15, '...') }}</td>
                                     <td>{{ $item->category->name }}</td>
                                     <td>{{ $item->buying_price }}</td>
                                     <td>{{ $item->selling_price }}</td>
                                     <td>{{ $item->stock }}</td>
                                     <td>{{ $item->unit }}</td>
-                                    {{-- <td class="">{{ $item->description}}</td> --}}
                                     <td>{{ \Illuminate\Support\Str::limit($item->description, 50, '...') }}</td>
 
                                     <td>{{ $item->status == 1 ? 'Active' : 'Inactive' }}</td>

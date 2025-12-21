@@ -50,7 +50,7 @@
             <div class="text-center logo logo-light">
 
                 <span class="logo-lg">
-                   <img src="{{ asset('frontend/assets/img/logo.jpg') }}" alt="" height="70">
+                   <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/img/logo.jpg') }}" alt="" height="70"></a>
                 </span>
             </div>
         </div>

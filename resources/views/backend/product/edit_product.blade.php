@@ -113,7 +113,7 @@
                                                 <select name="unit" class="form-select">
                                                     <option disabled>Select Unit</option>
                                                     <option value="kg" {{ $product->unit == 'kg' ? 'selected' : '' }}>Kilogram (kg)</option>
-                                                    <option value="g" {{ $product->unit == 'g' ? 'selected' : '' }}>Gram (g)</option>
+                                                    <option value="gm" {{ $product->unit == 'gm' ? 'selected' : '' }}>Gram (gm)</option>
                                                     <option value="pcs" {{ $product->unit == 'pcs' ? 'selected' : '' }}>Pieces (pcs)</option>
                                                 </select>
                                             </div>

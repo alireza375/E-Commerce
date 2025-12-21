@@ -73,16 +73,13 @@
                                             </div>
                                         </div>
 
-                                        {{-- give priduct unit as dropdown in default value --}}
-
-
                                         <div class="col-md-6">
                                             <div class="mb-3 form-group">
                                                 <label for="firstname" class="form-label">Product Unit</label>
                                                 <select name="unit" class="form-select">
                                                     <option selected disabled>Select Unit </option>
                                                     <option value="kg">Kilogram (kg)</option>
-                                                    <option value="g">Gram (g)</option>
+                                                    <option value="gm">Gram (gm)</option>
                                                     <option value="pcs">Pieces (pcs)</option>
                                                 </select>
 

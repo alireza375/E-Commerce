@@ -9,7 +9,7 @@
         <div class="header_bottom">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-lg custom_nav-container ">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="images/logo.png" alt="">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -23,7 +23,7 @@
 
                             <div class="container px-0">
                                 <nav class="bg-white navbar navbar-light navbar-expand-xl">
-                                    <a href="index.html" class="navbar-brand">
+                                    <a href="{{ url('/') }}" class="navbar-brand">
                                         <h1 class="text-primary display-6">Fruitables</h1>
                                     </a>
                                     <button class="px-3 py-2 navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -32,12 +32,12 @@
                                     </button>
                                     <div class="bg-white collapse navbar-collapse" id="navbarCollapse">
                                         <div class="mx-auto navbar-nav">
-                                            <a href="index.html" class="nav-item nav-link active">Home</a>
+                                            <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
                                             <a href="shop.html" class="nav-item nav-link">Product</a>
                                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                                         </div>
                                         <div class="m-3 d-flex me-0">
-                                            <a href="#" class="my-auto position-relative me-4">
+                                            <a href="{{ route('cart.index') }}" class="my-auto position-relative me-4">
                                                 <i class="fa fa-shopping-bag fa-2x"></i>
                                                 <span
                                                     class="px-1 position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark"
@@ -53,7 +53,7 @@
                                                             </span>
                                                         </a>
                                                     @elseif(Auth::user()->role === 'user')
-                                                        <a href="{{ route('user') }}">
+                                                        <a href="{{ route('user.user_dashboard') }}">
                                                             <i class="fa fa-user" aria-hidden="true"></i>
                                                             <span>
                                                                 Dashboard

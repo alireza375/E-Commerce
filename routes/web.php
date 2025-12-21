@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Common\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\DashboardController as UserDashboard;
 
@@ -59,14 +60,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/delete/product/{id}','DeleteProduct')->name('product.delete');
     });
 
-
-
+     Route::controller(CartController::class)->group(function(){
+        Route::get('/add/cart', [CartController::class, 'CartIndex'])->name('cart.index');
+        Route::post('/store/cart/{product_id}', [CartController::class, 'CartStore'])->name('cart.store');
+        // Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
+        // Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    });
 
     Route::get('/user/logout', [UserDashboard::class, 'UserDestroy'])->name('user.logout');
     Route::middleware('role:user')->group(function () {
 
         Route::get('/user/dashboard', [UserDashboard::class, 'index'])
-            ->name('user.dashboard');
+            ->name('user.user_dashboard');
     });
 });
 require __DIR__.'/auth.php';
+
+
