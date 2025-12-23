@@ -67,6 +67,11 @@ Route::middleware(['auth'])->group(function () {
         // Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
     });
 
+    // Route::middleware('auth:checkUser')->group(function () {
+    //     Route::get('/add/cart', [CartController::class, 'CartIndex'])->name('cart.index');
+    //     Route::post('/store/cart/{product_id}', [CartController::class, 'CartStore'])->name('cart.store');
+    // });
+
     Route::get('/user/logout', [UserDashboard::class, 'UserDestroy'])->name('user.logout');
     Route::middleware('role:user')->group(function () {
 

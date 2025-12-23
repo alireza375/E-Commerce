@@ -52,117 +52,50 @@
                             <th scope="col">Handle</th>
                           </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mt-4 mb-0">Big Banana</p>
-                                </td>
-                                <td>
-                                    <p class="mt-4 mb-0">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="mt-4 input-group quantity" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="border btn btn-sm btn-minus rounded-circle bg-light" >
-                                            <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="text-center border-0 form-control form-control-sm" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="border btn btn-sm btn-plus rounded-circle bg-light">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mt-4 mb-0">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="mt-4 border btn btn-md rounded-circle bg-light" >
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
 
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-5.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mt-4 mb-0">Potatoes</p>
-                                </td>
-                                <td>
-                                    <p class="mt-4 mb-0">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="mt-4 input-group quantity" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="border btn btn-sm btn-minus rounded-circle bg-light" >
-                                            <i class="fa fa-minus"></i>
-                                            </button>
+                        @foreach ($carts as $cart)
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ asset($cart->product->image) }}" class="" style="width: 80px; height: 80px;" alt="">
                                         </div>
-                                        <input type="text" class="text-center border-0 form-control form-control-sm" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="border btn btn-sm btn-plus rounded-circle bg-light">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
+                                    </th>
+                                    <td>
+                                        <p class="mt-4 mb-0">{{ $cart->product->name }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="mt-4 mb-0" data-price="{{ $cart->product->selling_price }}">{{ $cart->product->selling_price }} BDT</p>
+                                    </td>
+                                    <td>
+                                        <div class="mt-4 input-group quantity" style="width: 100px;">
+                                            <div class="input-group-btn">
+                                                <button class="border btn btn-sm btn-minus rounded-circle bg-light" >
+                                                <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="text-center border-0 form-control form-control-sm" value="{{ $cart->quantity }}">
+                                            <div class="input-group-btn">
+                                                <button class="border btn btn-sm btn-plus rounded-circle bg-light">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mt-4 mb-0">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="mt-4 border btn btn-md rounded-circle bg-light" >
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-2.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mt-4 mb-0">Awesome Brocoli</p>
-                                </td>
-                                <td>
-                                    <p class="mt-4 mb-0">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="mt-4 input-group quantity" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="border btn btn-sm btn-minus rounded-circle bg-light" >
-                                            <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="text-center border-0 form-control form-control-sm" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="border btn btn-sm btn-plus rounded-circle bg-light">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mt-4 mb-0">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="mt-4 border btn btn-md rounded-circle bg-light" >
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
+                                    </td>
+                                    <td>
+                                        <p class="mt-4 mb-0">{{ $cart->product->selling_price * $cart->quantity }} BDT</p>
+                                    </td>
+                                    <td>
+                                        <button class="mt-4 border btn btn-md rounded-circle bg-light" >
+                                            <i class="fa fa-times text-danger"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        @endforeach
+
                     </table>
                 </div>
                 <div class="row g-4 justify-content-end">
@@ -215,6 +148,34 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+    <script>
+        document.addEventListener('click', function (e) {
+
+            if (e.target.closest('.btn-plus') || e.target.closest('.btn-minus')) {
+
+                const row = e.target.closest('tr');
+                const qtyInput = row.querySelector('.qty-input');
+                const price = parseFloat(row.querySelector('.unit-price').dataset.price);
+                const totalPriceEl = row.querySelector('.total-price');
+
+                let qty = parseInt(qtyInput.value);
+
+                if (e.target.closest('.btn-plus')) {
+                    qty++;
+                }
+
+                if (e.target.closest('.btn-minus') && qty > 1) {
+                    qty--;
+                }
+
+                qtyInput.value = qty;
+
+                const total = price * qty;
+                totalPriceEl.innerText = total + ' BDT';
+            }
+        });
+    </script>
+
     </body>
 
 </html>

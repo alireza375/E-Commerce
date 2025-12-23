@@ -4,26 +4,29 @@ namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class CartController extends Controller
 {
     //
     public function CartIndex(){
-        return view('frontend.cart');
+
+        $carts = Cart::where('user_id', Auth::id())->get();
+        return view('frontend.cart', compact('carts'));
     }
 
-    public function CartStore(Request $request)
-    {
-        $productId = $request->input('product_id');
-        $quantity = $request->input('quantity', 1); // Default to 1 if not provided
+    // public function CartStore(Request $request)
+    // {
+    //     $productId = $request->input('product_id');
+    //     $quantity = $request->input('quantity', 1); // Default to 1 if not provided
 
 
 
 
-        return redirect('/')->with('success', 'Product added to cart successfully!');
-    }
+    //     return redirect('/')->with('success', 'Product added to cart successfully!');
+    // }
 
     public function makeData($request)
     {
@@ -38,7 +41,7 @@ class CartController extends Controller
     }
 
     // Store Cart
-    public function store(Request $request)
+    public function CartStore(Request $request)
     {
         $data = $this->makeData($request);
 
@@ -73,4 +76,5 @@ class CartController extends Controller
             return ($e->getMessage());
         }
     }
+
 }
