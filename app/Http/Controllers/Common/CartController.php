@@ -28,6 +28,11 @@ class CartController extends Controller
     //     return redirect('/')->with('success', 'Product added to cart successfully!');
     // }
 
+    public function CartCheckout(){
+        $carts = Cart::where('user_id', Auth::id())->get();
+        return view('frontend.checkout', compact('carts'));
+    }
+
     public function makeData($request)
     {
         $user = Auth::id();
@@ -77,6 +82,15 @@ class CartController extends Controller
         } catch (\Exception $e) {
             return ($e->getMessage());
         }
+    }
+
+    // Update Cart
+    public function CartUpdate(Request $request, $id)
+    {
+        $cartItem = Cart::findOrFail($id);
+        $cartItem->quantity = $request->input('quantity');
+        $cartItem->save();
+        return redirect()->back()->with('success', 'Quantity updated successfully.');
     }
 
 }

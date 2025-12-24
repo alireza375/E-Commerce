@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Common\CartController;
 use App\Http\Controllers\HomeController;
@@ -37,7 +38,20 @@ Route::middleware(['auth'])->group(function () {
      Route::controller(UserDashboard::class)->group(function(){
         Route::get('/all/user','AllUser')->name('all.user');
 
+
   });
+
+
+//   Payment Method Routes
+
+Route::controller(PaymentMethodController::class)->group(function(){
+    Route::get('/all/payment_method','AllPaymentMethod')->name('all.payment_method');
+    // Route::get('/add/payment_method','AddPaymentMethod')->name('add.payment_method');
+    // Route::post('/store/payment_method','StorePaymentMethod')->name('store.payment_method');
+    // Route::get('/edit/payment_method/{id}','EditPaymentMethod')->name('edit.payment_method');
+    // Route::post('/update/payment_method/{id}','UpdatePaymentMethod')->name('payment_method.update');
+    // Route::get('/delete/payment_method/{id}','DeletePaymentMethod')->name('payment_method.delete');
+});
 
 
 
@@ -63,8 +77,9 @@ Route::middleware(['auth'])->group(function () {
      Route::controller(CartController::class)->group(function(){
         Route::get('/add/cart', [CartController::class, 'CartIndex'])->name('cart.index');
         Route::post('/store/cart/{product_id}', [CartController::class, 'CartStore'])->name('cart.store');
-        // Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
+        Route::put('/cart/{id}', [CartController::class, 'CartUpdate'])->name('cart.update');
         // Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+        Route::get('/cart/checkout', [CartController::class, 'CartCheckout'])->name('cart.checkout');
     });
 
     // Route::middleware('auth:checkUser')->group(function () {

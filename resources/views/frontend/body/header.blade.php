@@ -2,6 +2,11 @@
     $route = Route::current()->getName();
 @endphp
 
+@php
+$user = Auth::id();
+$cart = App\Models\Cart::where('user_id', $user)->get();
+@endphp
+
 <div class="hero_area">
 
     <!-- header section strats -->
@@ -41,7 +46,7 @@
                                                 <i class="fa fa-shopping-bag fa-2x"></i>
                                                 <span
                                                     class="px-1 position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark"
-                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">0</span>
+                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{ $cart->count() }}</span>
                                             </a>
                                             <div class="quote_btn-container">
                                                 @if (Auth::check())

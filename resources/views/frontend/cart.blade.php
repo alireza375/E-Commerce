@@ -71,18 +71,24 @@
                                     <td>
                                         <div class="mt-4 input-group quantity" style="width: 100px;">
                                             <div class="input-group-btn">
-                                                <button type="button" class="border btn btn-sm btn-minus rounded-circle bg-light">
+                                                <button class="border btn btn-sm btn-minus rounded-circle bg-light">
                                                     <i class="fa fa-minus"></i>
                                                 </button>
                                             </div>
+                                            {{-- Qunantity Update by CartUpdate function --}}
 
-                                            <input type="text"
+                                            <form action="{{ route('cart.update', $cart->id) }}" method="POST">
+                                                @csrf
+                                                <input type="text" class="text-center border-0 qty-input form-control form-control-sm" name="quantity" value="{{ $cart->quantity }}" miin="1" >
+                                            </form>
+
+                                            {{-- <input type="text"
                                                 class="text-center border-0 qty-input form-control form-control-sm"
                                                 value="{{ $cart->quantity }}"
-                                                readonly>
+                                                readonly> --}}
 
                                             <div class="input-group-btn">
-                                                <button type="button" class="border btn btn-sm btn-plus rounded-circle bg-light">
+                                                <button class="border btn btn-sm btn-plus rounded-circle bg-light">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
@@ -128,9 +134,10 @@
                         <p class="mb-0 pe-4" id="grand-total">৳ 0</p>
                     </div>
 
-                    <button class="px-4 py-3 mb-4 btn border-secondary rounded-pill text-primary text-uppercase ms-4" type="button">
+
+                    <a href="{{ route('cart.checkout') }}"><button class="px-4 py-3 mb-4 btn border-secondary rounded-pill text-primary text-uppercase ms-4" type="button">
                         Proceed Checkout
-                    </button>
+                    </button></a>
                 </div>
 
                     </div>

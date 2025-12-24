@@ -38,7 +38,6 @@
                                 <a href="{{ route('all.user') }}">All Users</a>
                             </li>
                             <li>
-                                {{-- <a href="{{ route('add.teacher') }}">Add Teacher </a> --}}
                             </li>
                         </ul>
                     </div>
@@ -55,6 +54,23 @@
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('all.category') }}">All Category</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#payment_method" data-bs-toggle="collapse">
+                        <!-- <i class="mdi mdi-cart-outline"></i> -->
+                        <i class="fa-sharp fa-solid fa-person-chalkboard"></i>
+                        <span> Payment Method Manage </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="payment_method">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('all.payment_method') }}">All Payment Method</a>
                             </li>
 
                         </ul>
@@ -79,24 +95,6 @@
                         </ul>
                     </div>
                 </li>
-
-                {{-- <li>
-                    <a href="#attendance" data-bs-toggle="collapse">
-                        <i class="fa-sharp fa-solid fa-person-chalkboard"></i>
-                        <span> Attendance </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="attendance">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('take.attendence.admin') }}">Take attendance</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('show.attendence.admin') }}">Show attendance</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li> --}}
             </ul>
         </div>
         </li>
