@@ -65,26 +65,33 @@
                                     <td>
                                         <p class="mt-4 mb-0">{{ $cart->product->name }}</p>
                                     </td>
-                                    <td>
-                                        <p class="mt-4 mb-0" data-price="{{ $cart->product->selling_price }}">{{ $cart->product->selling_price }} BDT</p>
+                                    <td class="mt-4 mb-0 unit-price" data-price="{{ $cart->product->selling_price }}">
+                                        {{ $cart->product->selling_price }} BDT
                                     </td>
                                     <td>
                                         <div class="mt-4 input-group quantity" style="width: 100px;">
                                             <div class="input-group-btn">
-                                                <button class="border btn btn-sm btn-minus rounded-circle bg-light" >
-                                                <i class="fa fa-minus"></i>
+                                                <button type="button" class="border btn btn-sm btn-minus rounded-circle bg-light">
+                                                    <i class="fa fa-minus"></i>
                                                 </button>
                                             </div>
-                                            <input type="text" class="text-center border-0 form-control form-control-sm" value="{{ $cart->quantity }}">
+
+                                            <input type="text"
+                                                class="text-center border-0 qty-input form-control form-control-sm"
+                                                value="{{ $cart->quantity }}"
+                                                readonly>
+
                                             <div class="input-group-btn">
-                                                <button class="border btn btn-sm btn-plus rounded-circle bg-light">
+                                                <button type="button" class="border btn btn-sm btn-plus rounded-circle bg-light">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="mt-4 mb-0">{{ $cart->product->selling_price * $cart->quantity }} BDT</p>
+                                        <p class="mt-4 mb-0 total-price">
+                                            {{ $cart->product->selling_price * $cart->quantity }} BDT
+                                        </p>
                                     </td>
                                     <td>
                                         <button class="mt-4 border btn btn-md rounded-circle bg-light" >
@@ -102,26 +109,30 @@
                     <div class="col-8"></div>
                     <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                         <div class="rounded bg-light">
-                            <div class="p-4">
-                                <h1 class="mb-4 display-6">Cart <span class="fw-normal">Total</span></h1>
-                                <div class="mb-4 d-flex justify-content-between">
-                                    <h5 class="mb-0 me-4">Subtotal:</h5>
-                                    <p class="mb-0">$96.00</p>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="mb-0 me-4">Delivery Charge:</h5>
-                                    <div class="">
-                                        <p class="mb-0">৳ 300</p>
-                                    </div>
-                                </div>
-                                <p class="mb-0 text-end">Shipping to Ukraine.</p>
-                            </div>
-                            <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                                <h5 class="mb-0 ps-4 me-4">Total</h5>
-                                <p class="mb-0 pe-4">$99.00</p>
-                            </div>
-                            <button class="px-4 py-3 mb-4 btn border-secondary rounded-pill text-primary text-uppercase ms-4" type="button">Proceed Checkout</button>
+                    <div class="p-4">
+                        <h1 class="mb-4 display-6">Cart <span class="fw-normal">Total</span></h1>
+
+                        <div class="mb-4 d-flex justify-content-between">
+                            <h5 class="mb-0 me-4">Subtotal:</h5>
+                            <p class="mb-0" id="cart-subtotal">৳ 0</p>
                         </div>
+
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mb-0 me-4">Delivery Charge:</h5>
+                            <p class="mb-0" id="delivery-charge" data-charge="300">৳ 300</p>
+                        </div>
+                    </div>
+
+                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                        <h5 class="mb-0 ps-4 me-4">Total</h5>
+                        <p class="mb-0 pe-4" id="grand-total">৳ 0</p>
+                    </div>
+
+                    <button class="px-4 py-3 mb-4 btn border-secondary rounded-pill text-primary text-uppercase ms-4" type="button">
+                        Proceed Checkout
+                    </button>
+                </div>
+
                     </div>
                 </div>
             </div>
@@ -148,7 +159,8 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
-    <script>
+
+    {{-- <script>
         document.addEventListener('click', function (e) {
 
             if (e.target.closest('.btn-plus') || e.target.closest('.btn-minus')) {
@@ -170,11 +182,59 @@
 
                 qtyInput.value = qty;
 
-                const total = price * qty;
-                totalPriceEl.innerText = total + ' BDT';
+                totalPriceEl.innerText = (price * qty) + ' BDT';
             }
         });
+    </script> --}}
+
+    <script>
+        function updateCartSummary() {
+            let subtotal = 0;
+
+            document.querySelectorAll('.total-price').forEach(item => {
+                subtotal += parseFloat(
+                    item.innerText.replace('BDT', '').replace('৳', '').trim()
+                );
+            });
+
+            const deliveryCharge = parseFloat(
+                document.getElementById('delivery-charge').dataset.charge
+            );
+
+            document.getElementById('cart-subtotal').innerText = '৳ ' + subtotal;
+            document.getElementById('grand-total').innerText = '৳ ' + (subtotal + deliveryCharge);
+        }
+
+        document.addEventListener('click', function (e) {
+
+            if (!e.target.closest('.btn-plus') && !e.target.closest('.btn-minus')) return;
+
+            const row = e.target.closest('tr');
+            const qtyInput = row.querySelector('.qty-input');
+            const price = parseFloat(row.querySelector('.unit-price').dataset.price);
+            const totalPriceEl = row.querySelector('.total-price');
+
+            let qty = parseInt(qtyInput.value);
+            // console.log(qty);
+
+            if (e.target.closest('.btn-plus')) {
+                qty++;
+            }
+
+            if (e.target.closest('.btn-minus') && qty > 1) {
+                qty--;
+            }
+
+            qtyInput.value = qty;
+            totalPriceEl.innerText = (price * qty) + ' BDT';
+
+            updateCartSummary(); // ✅ update subtotal & total
+        });
+
+        // initial load
+        document.addEventListener('DOMContentLoaded', updateCartSummary);
     </script>
+
 
     </body>
 

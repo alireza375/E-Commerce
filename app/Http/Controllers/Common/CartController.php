@@ -30,7 +30,7 @@ class CartController extends Controller
 
     public function makeData($request)
     {
-        $user = Auth::guard('checkUser')->user()->id;
+        $user = Auth::id();
         $data = [
             'user_id' => $user,
             'product_id' => $request->get('product_id'),
@@ -43,6 +43,8 @@ class CartController extends Controller
     // Store Cart
     public function CartStore(Request $request)
     {
+
+
         $data = $this->makeData($request);
 
         $userId = $data['user_id'];
@@ -70,7 +72,7 @@ class CartController extends Controller
             } else{
                 // Create new cart item if quantity is positive
             Cart::create($data);
-            return (('Cart item added successfully.'));
+            return (('Product added to cart successfully.'));
             }
         } catch (\Exception $e) {
             return ($e->getMessage());

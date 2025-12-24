@@ -207,6 +207,7 @@
                                                    <form action="{{ route('cart.store', $product->id) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         <input type="hidden" name="quantity" value="1">
+                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                         <button type="submit" class="px-2 border btn border-secondary rounded-pill text-primary">
                                                             <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
                                                         </button>
