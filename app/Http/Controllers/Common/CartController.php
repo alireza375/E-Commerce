@@ -12,9 +12,9 @@ class CartController extends Controller
 {
     //
     public function CartIndex(){
-
+        $deliveryCharge = 300;
         $carts = Cart::where('user_id', Auth::id())->get();
-        return view('frontend.cart', compact('carts'));
+        return view('frontend.cart', compact('carts', 'deliveryCharge'));
     }
 
     // public function CartStore(Request $request)
@@ -29,8 +29,9 @@ class CartController extends Controller
     // }
 
     public function CartCheckout(){
+        $deliveryCharge = 300;
         $carts = Cart::where('user_id', Auth::id())->get();
-        return view('frontend.checkout', compact('carts'));
+        return view('frontend.checkout', compact('carts', 'deliveryCharge'));
     }
 
     public function makeData($request)

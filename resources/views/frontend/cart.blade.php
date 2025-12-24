@@ -125,8 +125,13 @@
 
                         <div class="d-flex justify-content-between">
                             <h5 class="mb-0 me-4">Delivery Charge:</h5>
-                            <p class="mb-0" id="delivery-charge" data-charge="300">৳ 300</p>
+                            {{-- <p class="mb-0" id="delivery-charge" data-charge="300">৳ 300</p> --}}
+                              <p class="mb-0" id="delivery-charge" data-charge="{{ $deliveryCharge }}">
+                                ৳ {{ $deliveryCharge }}
+                            </p>
                         </div>
+
+
                     </div>
 
                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">

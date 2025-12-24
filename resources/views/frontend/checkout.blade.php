@@ -105,7 +105,7 @@
                                         <td class="py-5"></td>
                                         <td class="py-5">
                                             <div class="py-3 border-bottom border-top">
-                                                <p class="mb-0 text-dark">{{ $grandTotal }} BDT</p>
+                                                <p class="mb-0 text-dark">{{ $grandTotal }} + {{ $deliveryCharge }} BDT</p>
                                             </div>
                                         </td>
                                     </tr>
@@ -142,6 +142,8 @@
          @include('frontend.body.footer')
 
 
+
+
         <!-- Back to Top -->
         <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
 
@@ -156,7 +158,13 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+                 <script>
+    const baseTotal = {{ $grandTotal }};
+    const deliveryCharge = document.getElementById('delivery-charge').dataset.charge;
 
+    const finalTotal = parseInt(baseTotal) + parseInt(deliveryCharge);
+    document.getElementById('final-total').innerText = finalTotal;
+</script>
 
     </body>
 
