@@ -114,7 +114,7 @@
                             <div class="py-3 text-center row g-4 align-items-center justify-content-center border-bottom">
                                 <div class="col-12">
                                     <div class="my-3 form-check text-start">
-                                        <input type="checkbox" class="border-0 form-check-input bg-primary" id="Paypal-1" name="Paypal" value="Paypal">
+                                        <input type="checkbox" class="border-0 form-check-input bg-primary" id="" name="stripe" value="stripe">
                                         <label class="form-check-label" for="Paypal-1">Stripe</label>
                                     </div>
                                 </div>

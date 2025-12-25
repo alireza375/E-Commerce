@@ -32,6 +32,7 @@ $date = date('d-F-Y')
 @endphp
 
   <!-- Modal Search Start -->
- 
+  
+
 
 @endsection
